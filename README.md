@@ -17,7 +17,7 @@
 </p>
 
 <div align="center">
-  <a href='https://arxiv.org/abs/[]'><img src='https://img.shields.io/badge/arXiv-[]-b31b1b.svg'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href='http://arxiv.org/abs/2507.15454'><img src='https://img.shields.io/badge/arXiv-2507.15454-b31b1b.svg'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href='https://ruijiezhu94.github.io/ObjectGS_page/'><img src='https://img.shields.io/badge/Project-Page-orange'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href='https://ruijiezhu94.github.io/ObjectGS_page/'><img src='https://img.shields.io/badge/YouTube-Demo-yellow'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
   <a href='https://github.com/RuijieZhu94/ObjectGS?tab=MIT-1-ov-file'><img src='https://img.shields.io/badge/License-MIT-green'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,7 +41,12 @@
 If you find our work useful, please cite:
 
 ```bibtex
-
+@article{zhu2025objectgs,
+  title={ObjectGS: Object-aware Scene Reconstruction and Scene Understanding via Gaussian Splatting}, 
+  author={Ruijie Zhu and Mulin Yu and Linning Xu and Lihan Jiang and Yixuan Li and Tianzhu Zhang and Jiangmiao Pang and Bo Dai},
+  journal={arXiv preprint arXiv:2507.15454},
+  year={2025}
+}
 ```
 
 ### 🤝 Acknowledgements
