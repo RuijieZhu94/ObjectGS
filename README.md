@@ -14,12 +14,14 @@
   <sup>2</sup> Shanghai AI Lab </span> 
   <sup>3</sup> CUHK </span> 
   <sup>4</sup> HKU </span>
+  <br>
+  <b>ICCV 2025</b>
 </p>
 
 <div align="center">
-  <a href='http://arxiv.org/abs/2507.15454'><img src='https://img.shields.io/badge/arXiv-2507.15454-b31b1b.svg'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href='https://arxiv.org/abs/[]'><img src='https://img.shields.io/badge/arXiv-2507.15454-b31b1b.svg'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href='https://ruijiezhu94.github.io/ObjectGS_page/'><img src='https://img.shields.io/badge/Project-Page-orange'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href='https://ruijiezhu94.github.io/ObjectGS_page/'><img src='https://img.shields.io/badge/YouTube-Demo-yellow'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <!-- <a href='https://ruijiezhu94.github.io/ObjectGS_page/'><img src='https://img.shields.io/badge/YouTube-Demo-yellow'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -->
   <a href='https://github.com/RuijieZhu94/ObjectGS?tab=MIT-1-ov-file'><img src='https://img.shields.io/badge/License-MIT-green'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href='https://ruijiezhu94.github.io/ObjectGS'><img src="https://visitor-badge.laobi.icu/badge?page_id=ruijiezhu94.objectgs"/></a>
   <br>
@@ -34,17 +36,108 @@
 
 > The overall architecture of ObjectGS. We first use a 2D segmentation pipeline to assign object ID and lift it to 3D. Then we initialize the anchors and use them to generate object-aware neural Gaussians. To provide semantic guidance, we model the Gaussian semantics and construct classification-based constraints. As a result, our method enables both object-level and scene-level reconstruction.
 
-> **TODO: The full code might be released in several months. Stay tuned!**
+
+## 🚀 Quick Start
+
+### 🔧 Dataset Preparation
+To train ObjectGS, you should download the following dataset:
+* [3DOVS](https://github.com/Kunhao-Liu/3D-OVS)
+* [LERF-Mask](https://github.com/lkeab/gaussian-grouping/blob/main/docs/dataset.md#1-lerf-mask-dataset)
+* [Replica](https://github.com/facebookresearch/Replica-Dataset)
+* [Scannet++](https://github.com/scannetpp/scannetpp)
+
+Or you can use our processed subsets:
+[Google Drive](https://drive.google.com/drive/folders/1rKeDAactXtjqb37PiJ68ia-KyoKehUmy?usp=sharing)
+
+We organize the datasets as follows:
+
+```shell
+├── data
+│   | 3dovs
+│     ├── bed
+│     ├── bench
+│     ├── ...
+│   | lerf_mask
+│     ├── figurines
+│     ├── ramen
+│     ├── teatime
+│   | replica
+│     ├── office_0
+│     ├── office_1
+│     ├── ...
+│   | scannetpp_ovs
+│     ├── 09bced689e
+│     ├── 0d2ee665be
+│     ├── ...
+```
+
+
+### 🛠️ Installation
+1. Clone this repo:
+```bash
+git clone git@github.com:RuijieZhu94/ObjectGS.git --recursive
+```
+2. Install dependencies:
+```bash
+cd ObjectGS
+conda env create --file environment.yml
+```
+
+### 🌟 Training
+
+#### Data Preprocessing
+
+```shell
+python ply_preprocessing.py
+```
+
+#### Model Training
+
+```shell
+# 3dgs version
+bash train_3d.sh /path/to/your/dataset
+# 2dgs version
+bash train_2d.sh /path/to/your/dataset
+```
+
+
+### 🎇 Evaluation 
+
+#### Rendering 2D Semantics
+
+```shell
+bash render.sh path/to/your/training/folder
+```
+
+#### Rendering 3D Semantics (Point Cloud)
+
+```shell
+python vis_ply.py
+```
+
+#### Open-Vocabulary Segmentation Evaluation
+
+Please refer to [Gaussian-Grouping](https://github.com/lkeab/gaussian-grouping/blob/main/docs/dataset.md#2-render-mask-with-text-prompt) for OVS evaluation.
+
+#### Exporting Mesh
+```shell
+# exporting scene mesh
+python export_mesh.py -m path/to/your/training/folder
+
+# exporting object mesh
+python export_object_mesh.py -m path/to/your/training/folder --query_label_id -1
+## query_label_id: specify a object id (0~255), -1 for all objects
+```
 
 ### 📜 Citation
 
 If you find our work useful, please cite:
 
 ```bibtex
-@article{zhu2025objectgs,
-  title={ObjectGS: Object-aware Scene Reconstruction and Scene Understanding via Gaussian Splatting}, 
-  author={Ruijie Zhu and Mulin Yu and Linning Xu and Lihan Jiang and Yixuan Li and Tianzhu Zhang and Jiangmiao Pang and Bo Dai},
-  journal={arXiv preprint arXiv:2507.15454},
+@inproceedings{zhu2025objectgs,
+  title={ObjectGS: Object-aware Scene Reconstruction and Scene Understanding via Gaussian Splatting},
+  author={Zhu, Ruijie and Yu, Mulin and Xu, Linning and Jiang, Lihan and Li, Yixuan and Zhang, Tianzhu and Pang, Jiangmiao and Dai, Bo},
+  booktitle={International Conference on Computer Vision (ICCV), 2025},
   year={2025}
 }
 ```

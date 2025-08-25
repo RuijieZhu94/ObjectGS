@@ -1,0 +1,24 @@
+*.pyc
+.vscode
+temp*
+outputs*
+debug*
+log*
+wandb*
+*.bak
+data
+*build/*
+*__pycache__*
+tensorboard_3d
+screenshots
+*.so
+
+test_config/*scripts/*
+data/*
+datasets/*
+comparison_results
+Grounded-SAM-2
+output*
+# *.sh
+demo
+mesh
