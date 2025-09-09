@@ -9,7 +9,7 @@ model_params: {
               'feat_dim': 32, 
               'view_dim': 3, 
               'appearance_dim': 0, 
-              'n_offsets': 1, 
+              'n_offsets': 10, 
               'voxel_size': 0.001, 
               'render_mode': 'RGB+ED', 
               'update_depth': 3,
