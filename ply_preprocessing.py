@@ -186,13 +186,21 @@ def main():
         print(f"Processing {dataset_folder}...")
         label_image_dir = os.path.join(dataset_path, dataset_folder, 'object_mask')
         output_ply_file = os.path.join(dataset_path, dataset_folder, 'sparse/0/points3D_corr.ply')
-        camera_file = os.path.join(dataset_path, dataset_folder, 'sparse/0/cameras.bin')
-        image_file = os.path.join(dataset_path, dataset_folder, 'sparse/0/images.bin')
-        points3D_file = os.path.join(dataset_path, dataset_folder, 'sparse/0/points3D.bin')
 
-        cameras = read_intrinsics_binary(camera_file)
-        images = read_extrinsics_binary(image_file)
-        points3D = read_points3D_binary(points3D_file)
+        try:
+            camera_file = os.path.join(dataset_path, dataset_folder, 'sparse/0/cameras.bin')
+            image_file = os.path.join(dataset_path, dataset_folder, 'sparse/0/images.bin')
+            points3D_file = os.path.join(dataset_path, dataset_folder,'sparse/0/points3D.bin')
+            cameras = read_intrinsics_binary(camera_file)
+            images = read_extrinsics_binary(image_file)
+            points3D = read_points3D_binary(points3D_file)
+        except:
+            camera_file = os.path.join(dataset_path, dataset_folder, 'colmap/cameras_undistorted.txt')
+            image_file = os.path.join(dataset_path, dataset_folder, 'colmap/images.txt')
+            points3D_file = os.path.join(dataset_path, dataset_folder,'colmap/points3D.txt')            
+            cameras = read_intrinsics_text(camera_file)
+            images = read_extrinsics_text(image_file)
+            points3D = read_points3D_text(points3D_file)
 
         converter = ID2RGBConverter()
         all_colors = []
