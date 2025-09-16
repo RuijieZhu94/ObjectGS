@@ -19,7 +19,7 @@
 </p>
 
 <div align="center">
-  <a href='https://arxiv.org/abs/[]'><img src='https://img.shields.io/badge/arXiv-2507.15454-b31b1b.svg'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href='https://arxiv.org/abs/2507.15454'><img src='https://img.shields.io/badge/arXiv-2507.15454-b31b1b.svg'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href='https://ruijiezhu94.github.io/ObjectGS_page/'><img src='https://img.shields.io/badge/Project-Page-orange'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <!-- <a href='https://ruijiezhu94.github.io/ObjectGS_page/'><img src='https://img.shields.io/badge/YouTube-Demo-yellow'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -->
   <a href='https://github.com/RuijieZhu94/ObjectGS?tab=MIT-1-ov-file'><img src='https://img.shields.io/badge/License-MIT-green'></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -75,7 +75,7 @@ We organize the datasets as follows:
 ### 🛠️ Installation
 1. Clone this repo:
 ```bash
-git clone git@github.com:RuijieZhu94/ObjectGS.git --recursive
+git clone git@github.com:RuijieZhu94/ObjectGS.git
 ```
 2. Install dependencies:
 ```bash
