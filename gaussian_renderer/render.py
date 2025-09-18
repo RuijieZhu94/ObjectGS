@@ -24,18 +24,11 @@ def render(viewpoint_camera, pc, pipe, bg_color, visible_mask=None, training=Tru
     if pc.explicit_gs:
         xyz, color, opacity, scaling, rot, sh_degree, selection_mask = pc.generate_explicit_gaussians(visible_mask)
     else:
-        xyz, offset, color, opacity, scaling, rot, sh_degree, selection_mask, semantics = pc.generate_neural_gaussians(viewpoint_camera, visible_mask, training)
-        # xyz, offset, color, opacity, scaling, rot, sh_degree, selection_mask, semantics = pc.generate_neural_gaussians(viewpoint_camera, visible_mask & ~object_mask, training)
-        # xyz_1, offset_1, color_1, opacity_1, scaling_1, rot_1, sh_degree_1, selection_mask_1, semantics_1 = pc.generate_neural_gaussians(viewpoint_camera, visible_mask & object_mask, training)
-        # xyz = torch.cat((xyz, xyz_1), dim=0)
-        # offset = torch.cat((offset, offset_1), dim=0)
-        # color = torch.cat((color, 1 - color_1), dim=0)
-        # opacity = torch.cat((opacity, opacity_1), dim=0)
-        # scaling = torch.cat((scaling, scaling_1), dim=0)
-        # rot = torch.cat((rot, rot_1), dim=0)
-        # # sh_degree = torch.cat((sh_degree, sh_degree_1), dim=0)
-        # selection_mask = torch.cat((selection_mask, selection_mask_1), dim=0)
-        # semantics = torch.cat((semantics, semantics_1), dim=0)
+        if object_mask is None:
+            xyz, offset, color, opacity, scaling, rot, sh_degree, selection_mask, semantics = pc.generate_neural_gaussians(viewpoint_camera, visible_mask, training)
+        else:
+            xyz, offset, color, opacity, scaling, rot, sh_degree, selection_mask, semantics = pc.generate_neural_gaussians(viewpoint_camera, visible_mask & object_mask, training)
+
     # Set up rasterization configuration
     K = torch.tensor([
             [viewpoint_camera.fx, 0, viewpoint_camera.cx],
