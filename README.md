@@ -87,9 +87,7 @@ conda env create --file environment.yml
 
 #### Data Preprocessing
 
-```shell
-python ply_preprocessing.py
-```
+Please refer to [PLY_PREPROCESSING_README.md](PLY_PREPROCESSING_README.md) for detailed usage.
 
 #### Model Training
 
