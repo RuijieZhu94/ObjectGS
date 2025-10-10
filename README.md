@@ -113,6 +113,14 @@ bash render.sh path/to/your/training/folder
 python vis_ply.py
 ```
 
+#### Rendering single object
+
+```shell
+bash render_object.sh path/to/your/training/folder
+```
+
+Specify `query_label_id` (0-255) to render single object. -1 means loop through rendering all single objects.
+
 #### Open-Vocabulary Segmentation Evaluation
 
 Please refer to [Gaussian-Grouping](https://github.com/lkeab/gaussian-grouping/blob/main/docs/dataset.md#2-render-mask-with-text-prompt) for OVS evaluation.
