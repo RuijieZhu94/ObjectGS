@@ -46,6 +46,7 @@ import yaml
 import torch.nn.functional as F
 import warnings
 from render import render_sets
+from srl_utils import run_srl_loop
 warnings.filterwarnings('ignore')
 
 lpips_fn = lpips.LPIPS(net='vgg').to('cuda')
@@ -144,6 +145,10 @@ def training(dataset, opt, pipe, dataset_name, testing_iterations, saving_iterat
         iter_start.record()
 
         gaussians.update_learning_rate(iteration)
+
+        # Semantic Refinement Loop (SRL)
+        if iteration == opt.srl_iteration:
+            run_srl_loop(scene, gaussians, pipe, scene.background, iteration, logger)
         
         # Pick a random Camera
         
@@ -543,6 +548,7 @@ if __name__ == "__main__":
     # parser.add_argument("--save_iterations", nargs="+", type=int, default=[80000,90000,100000])
     parser.add_argument("--test_iterations", nargs="+", type=int, default=[-1])
     parser.add_argument("--save_iterations", nargs="+", type=int, default=[-1])
+    parser.add_argument("--srl_iteration", type=int, default=-1, help="Iteration to run Semantic Refinement Loop")
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--checkpoint_iterations", nargs="+", type=int, default=[])
     parser.add_argument("--start_checkpoint", type=str, default = None)
