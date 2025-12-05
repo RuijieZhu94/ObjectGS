@@ -1,0 +1,1 @@
+Our introduction of the SRL pipeline to ObjectGS does not require any addition steps or procedures compared to ObjectGS, so please follow the instructions from the attached ObjectGS README.md page to train and use ObjectGS-SRL.
