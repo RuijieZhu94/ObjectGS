@@ -99,7 +99,7 @@ optim_params: {
     pruning_type: mean,
     min_opacity: 0.005000,
     success_threshold: 0.800000,
-    densify_grad_threshold: 0.00005,
+    densify_grad_threshold: 0.00002,
     update_ratio: 0.200000,
     extra_ratio: 0.250000,
     extra_up: 0.050000,
