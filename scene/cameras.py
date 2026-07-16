@@ -18,6 +18,12 @@ import cv2
 import kornia
 from PIL import Image
 
+try:
+    PIL_NEAREST = Image.Resampling.NEAREST
+except AttributeError:  # Pillow < 9.1
+    PIL_NEAREST = Image.NEAREST
+
+
 class Camera(nn.Module):
     def __init__(self, resolution, colmap_id, R, T, Cx, Cy, FoVx, FoVy, image, alpha_mask, 
                  image_name, image_path, resolution_scale, uid,
@@ -109,7 +115,12 @@ class Camera(nn.Module):
             object_mask = Image.open(image_path.replace("images", "object_mask").replace(".JPG", ".png")).convert('L')
         else:
             object_mask = Image.open(image_path.replace("images", "object_mask").replace(".jpg", ".png")).convert('L')
-        object_mask = np.array(object_mask.resize(resolution), dtype=np.uint8)
+        # Object IDs are categorical values, so interpolating them can create
+        # labels that do not exist in the source mask.
+        object_mask = np.array(
+            object_mask.resize(resolution, resample=PIL_NEAREST),
+            dtype=np.uint8,
+        )
         self.object_mask = torch.from_numpy(object_mask)
 
 class MiniCam:
